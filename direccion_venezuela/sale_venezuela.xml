@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                
+                 <field name="partner_id" position="replace"> 
+                    <field name="partner_id" on_change="cargar_direccion(partner_id)"/>
+                 </field>
+                <field name="partner_id" position="after"> 
+                        <field name="country_id" attrs="{'invisible': [('partner_id','=',False)], 'readonly': [('country_id','>',1)]}" />
+                        <field name="estado_id" attrs="{'invisible': [('partner_id','=',False)], 'readonly': [('country_id','>',1)]}" />
+                        <field name="municipio_id" domain="[('estado_id','=',[estado_id])]" context="{'default_estado_id':estado_id}" attrs="{'invisible': [('partner_id','=',False)], 'readonly': [('country_id','>',1)]}"/>
+                        <field name="parroquia_id" domain="[('municipio_id','=',[municipio_id])]" context="{'default_municipio_id':municipio_id}" attrs="{'invisible': [('partner_id','=',False)], 'readonly': [('country_id','>',1)]}"/>
+                        <field name="sector" attrs="{'invisible': [('partner_id','=',False)], 'readonly': [('country_id','>',1)]}"/>
+                        <field name="calle_av" attrs="{'invisible': [('partner_id','=',False)], 'readonly': [('country_id','>',1)]}"/>
+                        <field name="casa_edif" attrs="{'invisible': [('partner_id','=',False)], 'readonly': [('country_id','>',1)]}"/>
+                        <field name="piso_apart" attrs="{'invisible': [('partner_id','=',False)], 'readonly': [('country_id','>',1)]}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+         
+        <record id="view_company_form" model="ir.ui.view">
+            <field name="name">res.company.form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form" />
+            <field name="arch" type="xml">
+            
+                    <field name="zip" position="after">
+                    <label string="Ver en: " align="1.0"/>
+                    <group colspan="1" col="2">
+                        <button name="open_map" help="Para la busqueda en el mapa escriba palabras claves; por ejemplo: Calle, Residencias, Edificio."
+                           string="Mapa" type="object" icon="gtk-zoom-in"/>
+                    </group>
+                    </field>
+                    
+                    
+                    <field name="country_id" position="replace"/>
+                    
+                    <field name="street" position="before">
+                        <field name="country_id" placeholder="Country" class="oe_no_button" options='{"no_open": True}' on_change="on_change_country(country_id)"/>
+                    </field>
+                    
+                    
+                    <label for="rml_header1" position="replace"/>
+                    <field name="rml_header1" position="replace"/>
+                    <field name="website" position="replace"/>
+                        <field name="phone" position="before">
+                            <field name="rml_header1" placeholder="e.g. Global Business Solutions"/>
+                                <field name="website" widget="url" placeholder="e.g. www.odoo.com"
+                                    on_change="onchange_footer(custom_footer, phone, fax, email, website, vat, company_registry, bank_ids)"/>
+                            </field>
+                            
+<!--
+Agregar los nuevos campos
+
+-->
+                
+                    <field name="street" position="before">
+                        <field name="estado_id" placeholder="Estado" on_change="limpiar_campos('estado')" attrs="{'invisible': [('country_id','!=',240)], 'required': [('country_id','=',240)]}"/>
+                    </field>
+                    <field name="street" position="before">
+                        <field name="municipio_id" placeholder="Municipio" domain="[('estado_id','=',[estado_id])]" on_change="limpiar_campos('municipio')" attrs="{'invisible': [('country_id','!=',240)], 'required': [('country_id','=',240)]}"/>
+                    </field>
+                    <field name="municipio_id" position="after">
+                        <field name="parroquia_id" placeholder="Parroquia" domain="[('municipio_id','=',[municipio_id])]" on_change="limpiar_campos('parroquia')" attrs="{'invisible': [('country_id','!=',240)], 'required': [('country_id','=',240)]}"/>
+                    </field>
+                    
+                    <field name="street" position="before">
+                        <field name="sector" placeholder="Sector" attrs="{'invisible': [('country_id','!=',240)]}"/>
+                    </field>
+                    
+                    <field name="sector" position="after">
+                        <field name="calle_av" placeholder="Calle/Avenida" attrs="{'invisible': [('country_id','!=',240)]}"/>
+                    </field>
+                    
+                    <field name="calle_av" position="after">
+                        <field name="casa_edif" placeholder="Casa/Edificio" attrs="{'invisible': [('country_id','!=',240)]}"/>
+                    </field>
+                    
+                    <field name="casa_edif" position="after">
+                        <field name="piso_apart" placeholder="Piso - N° Local" attrs="{'invisible': [('country_id','!=',240)]}"/>
+                    </field>
+                    
+<!--
+Ocultando los campos existentes
+-->
+                    
+                    
+                    <field name="street2" position="replace"/>
+                    <field name="city" position="before">
+                        <field name="street2" attrs="{'invisible': [('country_id','=',240)]}"/>
+                    </field>
+                    
+                    <field name="street" position="replace"/>
+                    <field name="street2" position="before">
+                        <field name="street" placeholder="Street..." attrs="{'invisible': [('country_id','=',240)]}"/>
+                    </field>
+                    
+                    <field name="city" position="replace"/>
+                    <field name="state_id" position="before">
+                        <field name="city" placeholder="City" style="width: 40%%" attrs="{'invisible': [('country_id','=',240)]}"/>
+                    </field>
+                    
+                    <field name="state_id" position="replace"/>
+                    <field name="zip" position="before">
+                        <field name="state_id" class="oe_no_button" placeholder="State" on_change="onchange_state(state_id)" style="width: 26%%" options='{"no_open": True}' attrs="{'invisible': [('country_id','=',240)]}"/>
+                    </field>
+                    
+                    <field name="zip" position="replace"/>
+                    <field name="state_id" position="after">
+                        <field name="zip" placeholder="ZIP" style="width: 34%%" attrs="{'invisible': [('country_id','=',240)]}"/>
+                    </field>                    
+                    
+                    
+            </field>
+        </record>
+    </data>
+</openerp>
+

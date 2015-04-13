@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <openerp>
+     <data>
+    <record model="ir.ui.view" id="view_direccion_ven_estados_form">
+        <field name="name">direccion_ven_estados.form</field>
+        <field name="model">direccion.ven.estados</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="direccion_ven_estado">
+                <sheet>
+                <group>
+                <field name="estado" select="1"/>
+                <field name="codigo" select="2"/>
+                <field name="active" select="0" readonly="1"/>
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_direccion_ven_estado_tree">
+        <field name="name">direccion_ven_estados.tree</field>
+        <field name="model">direccion.ven.estados</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="direccion_ven_estado">
+                <field name="estado"/>
+                <field name="codigo"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_direccion_ven_estados">
+        <field name="name">Estados</field>
+        <field name="res_model">direccion.ven.estados</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <record model="ir.ui.view" id="view_res_municipios_form">
+        <field name="name">direccion_ven_municipios.form</field>
+        <field name="model">direccion.ven.municipios</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="direccion_ven_municipios">
+                <sheet>
+                <group>
+                <field name="municipio" select="1"/>
+                <field name="codigo" select="2"/>
+                <field name="estado_id" select="0" attrs="{'readonly': [('estado_id','>',1)]}"/>
+                <field name="active" select="0" readonly="1"/>
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="view_direccion_ven_municipios_tree">
+        <field name="name">direccion_ven_municipios.tree</field>
+        <field name="model">direccion.ven.municipios</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="direccion_ven_municipios">
+                <field name="municipio"/>
+                <field name="codigo"/>
+                <field name="estado_id"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_direccion_ven_municipios">
+        <field name="name">Municipios</field>
+        <field name="res_model">direccion.ven.municipios</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+
+    </record>
+    
+
+        
+    <record model="ir.ui.view" id="view_direccion_ven_parroquias_form">
+        <field name="name">direccion_ven_parroquias.form</field>
+        <field name="model">direccion.ven.parroquias</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="direccion_ven_parroquias">
+                <sheet>
+                <group>
+                <field name="parroquia" select="1"/>
+                <field name="codigo" select="2"/>
+                <field name="municipio_id" select="0" attrs="{'readonly': [('municipio_id','>',1)]}"/>
+                <field name="active" select="0" readonly="1"/>
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_direccion_ven_parroquias_tree">
+        <field name="name">direccion_ven_parroquias.tree</field>
+        <field name="model">direccion.ven.parroquias</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="direccion_ven_parroquias">
+                <field name="parroquia"/>
+                <field name="codigo"/>
+                <field name="municipio_id"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_direccion_ven_parroquias">
+        <field name="name">Parroquias</field>
+        <field name="res_model">direccion.ven.parroquias</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+
+    
+    <record model="ir.ui.view" id="view_direccion_ven_sector_form">
+        <field name="name">direccion_ven_sector.form</field>
+        <field name="model">direccion.ven.sector</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="direccion_ven_sector">
+                <sheet>
+                <group>
+                <field name="sector" select="1"/>
+                <field name="codigo" select="2"/>
+                <field name="parroquia_id" select="0"/>
+                <field name="active" select="0"/>
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_direccion_ven_sector_tree">
+        <field name="name">direccion_ven_sector.tree</field>
+        <field name="model">direccion.ven.sector</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="direccion_ven_sector">
+                <field name="sector"/>
+                <field name="codigo"/>
+                <field name="parroquia_id"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_direccion_ven_sector">
+        <field name="name">Sector</field>
+        <field name="res_model">direccion.ven.sector</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    
+    
+<!--
+    <menuitem name= "Dirección" id="menu_direccion"  action= "action_direccion_ven_estados" sequence="20" />
+-->
+    
+    <menuitem name="Direccion" id="next_id_82" parent="base.menu_administration"  />
+    <menuitem name="Estados" id="menu_res_estados" parent="direccion_venezuela.next_id_82" action="action_direccion_ven_estados" sequence="5"/>
+    <menuitem name="Municipios" id="menu_res_municipios" parent="direccion_venezuela.next_id_82" action="action_direccion_ven_municipios" sequence="10"/>
+    <menuitem name="Parroquia" id="menu_res_parroquias" parent="direccion_venezuela.next_id_82" action="action_direccion_ven_parroquias" sequence="15"/>
+
+    </data>
+</openerp>
